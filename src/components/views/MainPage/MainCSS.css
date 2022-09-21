@@ -1,0 +1,11 @@
+.main{
+    display:bolck;
+    width: 50%;
+    float:right;
+}
+
+.sidebar{
+    display:bolck;
+    width: 50%;
+    float:left;
+}
