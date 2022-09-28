@@ -9,7 +9,7 @@ function HeaderComponent(props) {
   const user = useSelector(state => state.user);
 
 
-  if(user.logincomplete){
+  if(user.REFRESHTOKEN){
   return (
     <div
       style={{
@@ -19,7 +19,7 @@ function HeaderComponent(props) {
         width: "100%",
         height: "100vh",
       }}>
-        <div>{user.logincomplete.id}</div>
+        <div>{user.REFRESHTOKEN}</div>
     </div>
   );
   }else{

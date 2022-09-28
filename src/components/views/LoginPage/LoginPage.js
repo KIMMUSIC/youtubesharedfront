@@ -5,6 +5,9 @@ import {useNavigate} from "react-router-dom";
 
 import {useDispatch} from "react-redux";
 import {useSelector} from "react-redux";
+import axios from "axios";
+import {LOGIN} from "../../../_actions/types"
+
 function LoginPage(props) {
   const dispath = useDispatch();
   const navigate = useNavigate();
@@ -27,8 +30,32 @@ function LoginPage(props) {
       id : Id,
       password : Password
     }
-    dispath(loginUser(body));
-    navigate("/main");
+    //dispath(loginUser(body));
+
+    axios({
+      method : "post",
+      url : "http://localhost:8080/api/login",
+      data : body
+  }).then((res) =>{ 
+    console.log(res);
+    if(res.data.code === "USER_NOT_FOUND"){
+      alert("비번틀림")
+    }else{
+    dispath({
+    type : LOGIN,
+    payload : res.data,
+  })
+  navigate("/main");
+}
+})
+  .catch((err)=>{
+    
+    
+  });
+    
+  
+
+    //navigate("/main");
   };
 
   return (

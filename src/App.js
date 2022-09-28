@@ -9,6 +9,8 @@ import Refreshtoken from "./utils/silentrefresh";
 import {useDispatch} from "react-redux";
 import { loginUser } from "./_actions/userAction";
 import {useSelector} from "react-redux";
+import axios from "axios";
+import { REFRESHTOKEN } from "./_actions/types";
 function App() {
 
   const dispath = useDispatch();
@@ -16,9 +18,19 @@ function App() {
 
   /*
   useEffect(()=>{
+    console.log("새로고침");
+    axios({
+      method : "get",
+      url : "http://localhost:8080/silent-refresh",
+  }).then((res) => dispath({
+    type : REFRESHTOKEN,
+    payload : res.data,
+  }))
+  .catch((err)=>console.log(err));
     dispath(loginUser());
   },[])
   */
+  
 
   return (
     <Router>

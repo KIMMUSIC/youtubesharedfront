@@ -15,7 +15,9 @@ export function registerUser(dataToSubmit){
 
 export function loginUser(data){
     const a = request("post", "/api/login", data);
-    localStorage.setItem('id', a.UserName)
+    a.then((data)=>{
+        localStorage.setItem('id', data.userName)
+    })
     return {
         type : LOGIN,
         payload : a,
